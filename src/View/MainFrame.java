@@ -1,56 +1,73 @@
 package View;
 
+import Control.Controller;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
-    public MainFrame() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setSize(750,750);
-        MainPanel mainPanel = new MainPanel();
-        frame.add(mainPanel);
-        frame.setVisible(true);
+    private JButton digButton;
+    private JButton newGameButton;
+    private JLabel playerLabel;
+    private MainPanel mainPanel;
+    private Controller controller;
 
-        /*JFrame frame = new JFrame();
-        frame.setTitle("Skattjakt 1");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600,400);
+    public MainFrame(Controller controller) {
+        this.controller = controller;
 
-        int rows = 10;
-        int cols = 10;
-        frame.setLayout(new GridLayout(rows,cols));
+        setTitle("Game Frame");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setLayout(new BorderLayout());
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                frame.add(new JButton());
+        mainPanel = new MainPanel(this);
+        add(mainPanel, BorderLayout.CENTER);
+
+        playerLabel = new JLabel("Current Player: ");
+        add(playerLabel, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 2));
+
+        digButton = new JButton("Dig");
+        buttonPanel.add(digButton);
+
+        newGameButton = new JButton("New Game");
+        buttonPanel.add(newGameButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        digButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.handleDig();
+                mainPanel.updateGameBoard();
             }
-        }
-        frame.setVisible(true);
+        });
 
-        JFrame frame1 = new JFrame();
-        frame1.setTitle("Skattjakt 2");
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setSize(600,400);
-        frame1.setLocation(0,600);
-
-        int rows1 = 10;
-        int cols1 = 10;
-        frame1.setLayout(new GridLayout(rows1, cols1));
-
-        for (int i = 0; i < rows1; i++) {
-            for (int j = 0; j < cols1; j++) {
-                frame1.add(new JButton());
+        newGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.resetGame();
+                mainPanel.updateGameBoard();
+                updatePlayerLabel();
             }
-        }
-        frame1.setVisible(true);
+        });
 
-        JFrame frame2 = new JFrame();
-        frame2.setTitle("High-score lista");
-        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame2.setSize(200, 800);
-        frame2.setLocation(600,0);
-        frame2.setVisible(true);*/
+        setVisible(true);
+    }
+
+    public void updatePlayerLabel() {
+        playerLabel.setText("Current Player: " + controller.getCurrentPlayerName());
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public MainPanel getMainPanel() {
+        return mainPanel;
     }
 }
