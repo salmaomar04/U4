@@ -29,11 +29,15 @@ public class Controller {
     }
 
     public void resetGame() {
+        gameManager.saveHighScores();
         gameBoard.resetBoard();
         gameManager.resetScores();
         gameManager.setupPlayers();
         mainFrame.updatePlayerLabel();
+        mainFrame.getMainPanel().updateGameBoard();
     }
+
+    //jag tror jag behöver ha en startgame method
 
     public void handleDig() {
         System.out.println("Reached handle dig method");

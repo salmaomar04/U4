@@ -44,6 +44,7 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 controller.handleDig();
                 mainPanel.updateGameBoard();
+                updatePlayerLabel();
             }
         });
 

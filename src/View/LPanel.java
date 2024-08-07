@@ -19,6 +19,10 @@ public class LPanel extends JPanel {
             for (int col = 0; col < 10; col++) {
                 JButton button = new JButton();
                 button.setPreferredSize(new Dimension(50, 50));
+
+                button.setOpaque(true);
+                button.setBorderPainted(true);
+
                 int finalCol = col;
                 int finalRow = row;
                 button.addActionListener(e -> mainPanel.buttonClicked(finalRow, finalCol));
@@ -31,5 +35,9 @@ public class LPanel extends JPanel {
     public void updateButton(int row, int col, Color color) {
         JButton button = buttons[row][col];
         button.setBackground(color);
+
+        button.setOpaque(true);
+        button.setBorderPainted(true);
+        button.repaint();
     }
 }

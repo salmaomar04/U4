@@ -26,19 +26,20 @@ public class MainPanel extends JPanel {
 
     public void buttonClicked(int row, int col) {
         mainFrame.getController().selectSquare(row, col);
+        mainFrame.getController().handleDig();
     }
 
     public void updateGameBoard() {
-        for (int row = 0; row < 10; row++) {
-            for (int col = 0; col < 10; col++) {
+        for (int row = 0; row < mainFrame.getController().getGameBoard().getSize(); row++) {
+            for (int col = 0; col < mainFrame.getController().getGameBoard().getSize(); col++) {
                 BuriedObject object = mainFrame.getController().getGameBoard().getObjectAt(row, col);
                 if (object != null && object.isDug(row, col)) {
                     if (object instanceof Treasure) {
-                        lPanel.updateButton(row, col, Color.YELLOW); // Treasure found
+                        lPanel.updateButton(row, col, Color.GREEN); // Treasure found
                     } else if (object instanceof Trap) {
                         lPanel.updateButton(row, col, Color.RED); // Trap found
                     } else if (object instanceof EmptySquare) {
-                        lPanel.updateButton(row, col, Color.LIGHT_GRAY); // Empty square
+                        lPanel.updateButton(row, col, Color.WHITE); // Empty square
                     }
                 } else if (object == null) {
                     lPanel.updateButton(row, col, Color.GRAY);

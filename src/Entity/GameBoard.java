@@ -153,4 +153,8 @@ public class GameBoard {
             }
         }
     }
+
+    public int getSize() {
+        return size;
+    }
 }

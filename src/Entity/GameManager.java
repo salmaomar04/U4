@@ -49,6 +49,19 @@ public class GameManager {
         saveHighScores();
     }
 
+    public void saveHighScores() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(highScoreFile))) {
+            for (String highScore : highScores) {
+                writer.write(highScore);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving high scores.");
+        }
+    }
+
+
+
     public List<String> getHighScores() {
         return highScores;
     }
@@ -61,17 +74,6 @@ public class GameManager {
             }
         } catch (IOException e) {
             System.out.println("High scores file not found. A new one will be created.");
-        }
-    }
-
-    private void saveHighScores() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(highScoreFile))) {
-            for (String highScore : highScores) {
-                writer.write(highScore);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving high scores.");
         }
     }
 
