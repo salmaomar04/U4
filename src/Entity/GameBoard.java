@@ -1,5 +1,6 @@
 package Entity;
 
+import javax.swing.*;
 import java.util.*;
 
 public class GameBoard {
@@ -7,7 +8,6 @@ public class GameBoard {
     private final BuriedObject[][] board;
     private int selectedRow = -1;
     private int selectedCol = -1;
-    private final Set<int[]> dugCoordinates = new HashSet<>();
 
     public GameBoard(int size) {
         this.size = size;
@@ -50,7 +50,7 @@ public class GameBoard {
         fillEmptySquares();
     }
 
-    private void clearBoard() {
+    public void clearBoard() {
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 board[row][col] = null;
@@ -146,10 +146,17 @@ public class GameBoard {
 
     public void digObject(Player player, int row, int col) {
         BuriedObject object = getObjectAt(row, col);
-        if (object != null) {
-            if (!object.isDug(row, col)) {
-                object.digObject(player, row, col);
-                dugCoordinates.add(new int[]{row, col});
+        if (object != null && !object.isDug(row, col)) {
+            object.digObject(player, row, col);
+
+            if (object instanceof Treasure) {
+                Treasure treasure = (Treasure) object;
+                if (treasure.isCompletelyDug()) {
+                    player.addScore(treasure.getPoints());
+                    JOptionPane.showMessageDialog(null, "Wohoo! " + player.getName() + " has dug the last part of a treasure and gained " + treasure.getPoints() + " points!");
+                }
+            } else if (object instanceof Trap) {
+                JOptionPane.showMessageDialog(null, "Oh no! " + player.getName() + ", unfortunately, you have dug a trap.");
             }
         }
     }

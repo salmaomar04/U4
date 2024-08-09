@@ -1,2 +1,2 @@
-saood: 500
-salma: 300
+Salma: 50
+Saood: -50

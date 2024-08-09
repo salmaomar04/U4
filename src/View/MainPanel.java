@@ -30,6 +30,7 @@ public class MainPanel extends JPanel {
     }
 
     public void updateGameBoard() {
+
         for (int row = 0; row < mainFrame.getController().getGameBoard().getSize(); row++) {
             for (int col = 0; col < mainFrame.getController().getGameBoard().getSize(); col++) {
                 BuriedObject object = mainFrame.getController().getGameBoard().getObjectAt(row, col);
@@ -39,7 +40,7 @@ public class MainPanel extends JPanel {
                     } else if (object instanceof Trap) {
                         lPanel.updateButton(row, col, Color.RED); // Trap found
                     } else if (object instanceof EmptySquare) {
-                        lPanel.updateButton(row, col, Color.WHITE); // Empty square
+                        lPanel.updateButton(row, col, Color.white); // Empty square
                     }
                 } else if (object == null) {
                     lPanel.updateButton(row, col, Color.GRAY);

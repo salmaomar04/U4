@@ -53,6 +53,7 @@ public class Controller {
                 gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
                 gameManager.updateHighScores();
                 gameManager.switchToNextPlayer();
+                mainFrame.updatePlayerLabel();
                 mainFrame.getMainPanel().updateGameBoard(); // Refresh the game board
             } else {
                 System.out.println("Object already dug");
