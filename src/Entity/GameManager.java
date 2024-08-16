@@ -21,6 +21,8 @@ public class GameManager {
     /**
      * Initializes the GameManager by creating lists for players and high scores,
      * and loading the high scores from a file.
+     *
+     * @author Salma Omar
      */
     public GameManager() {
         players = new ArrayList<>();
@@ -30,6 +32,8 @@ public class GameManager {
 
     /**
      * Sets up the players by asking for their names and making sure they are unique.
+     *
+     * @author Salma Omar
      */
     public void setupPlayers() {
         players.clear();
@@ -51,6 +55,8 @@ public class GameManager {
      * Gets the current player.
      *
      * @return the current Player object.
+     *
+     * @author Roa Jamhour
      */
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
@@ -58,6 +64,8 @@ public class GameManager {
 
     /**
      * Switches to the next player in the list.
+     *
+     * @author Roa Jamhour
      */
     public void switchToNextPlayer() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
@@ -66,6 +74,8 @@ public class GameManager {
     /**
      * Updates the high scores list by adding the current winner, if they are not already on the list.
      * The high scores list is then sorted, and the top 10 scores are saved.
+     *
+     * @author Roa Jamhour
      */
     public void updateHighScores() {
         Player winner = determineWinner();
@@ -88,6 +98,8 @@ public class GameManager {
      * Gets the list of high scores.
      *
      * @return a list of players with the highest scores.
+     *
+     * @author Roa Jamhour
      */
     public List<Player> getHighScores() {
         return new ArrayList<>(highScores);
@@ -95,6 +107,8 @@ public class GameManager {
 
     /**
      * Loads the high scores from a file.
+     *
+     * @author Salma Omar
      */
     private void loadHighScores() {
         try (BufferedReader reader = new BufferedReader(new FileReader(highScoreFile))) {
@@ -114,6 +128,8 @@ public class GameManager {
 
     /**
      * Saves the high scores to a file.
+     *
+     * @author Salma Omar
      */
     private void saveHighScores() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(highScoreFile))) {
@@ -130,6 +146,8 @@ public class GameManager {
      * Determines the winner by finding the player with the highest score.
      *
      * @return the player with the highest score, or null if there are no players.
+     *
+     * @author Salma Omar
      */
     private Player determineWinner() {
         return players.stream()
@@ -141,6 +159,8 @@ public class GameManager {
      * Gets the list of players.
      *
      * @return a list of current players.
+     *
+     * @author Roa Jamhour
      */
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
