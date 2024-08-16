@@ -63,16 +63,21 @@ public class Controller {
                 if (!object.isDug(row, col)) {
                     gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
 
+                    if (object instanceof Trap) {
+                        gameManager.switchToNextPlayer();
+                        mainFrame.updatePlayerLabel();
+                    }
+
                     if (gameBoard.allSquaresDug()) {
                         Player winner = determineWinner();
                         JOptionPane.showMessageDialog(mainFrame,
                                 "Game Over! The winner is " + winner.getName() + " with " + winner.getScore() + " points.");
                         gameManager.updateHighScores();
-                    } else {
-                        gameManager.switchToNextPlayer();
-                        mainFrame.updatePlayerLabel();
                     }
+
+                    mainFrame.updatePlayerLabel();
                     mainFrame.getMainPanel().updateGameBoard();
+
                 } else {
                     System.out.println("Object already dug");
                 }

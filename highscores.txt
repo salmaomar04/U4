@@ -1,4 +1,1 @@
-asia: 300
-AHMAD: 250
-SALMA: 200
-AASIM: 200
+
