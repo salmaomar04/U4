@@ -14,6 +14,7 @@ public interface IBuriedObject {
      * @param player the player who is digging the object.
      * @param row    the row position of the object.
      * @param col    the column position of the object.
+     * @author Roa Jamhour
      */
     void digObject(Player player, int row, int col);
 
@@ -23,6 +24,8 @@ public interface IBuriedObject {
      * @param row the row position of the object.
      * @param col the column position of the object.
      * @return true if the object has been dug at the specified location, false otherwise.
+     *
+     * @author Salma Omar
      */
 
     boolean isDug(int row, int col);

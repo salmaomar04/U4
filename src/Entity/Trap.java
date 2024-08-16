@@ -15,6 +15,7 @@ public class Trap extends BuriedObject {
      * @param penaltyPoints the number of points to subtract from the player's score when the trap is dug.
      * @param row           the row position of the trap on the game board.
      * @param col           the column position of the trap on the game board.
+     * @author Salma Omar
      */
     public Trap(int penaltyPoints, int row, int col) {
         super(row, col);
@@ -28,6 +29,7 @@ public class Trap extends BuriedObject {
      * @param player the player who is digging the trap.
      * @param row    the row position where the digging occurs.
      * @param col    the column position where the digging occurs.
+     * @author Roa Jamhour
      */
     @Override
     public void digObject(Player player, int row, int col) {
