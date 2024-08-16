@@ -20,6 +20,7 @@ public class Treasure extends BuriedObject {
      *
      * @param points      the number of points awarded when the entire treasure is dug.
      * @param coordinates a list of coordinates representing the parts of the treasure on the game board.
+     * @author Roa Jamhour
      */
     public Treasure(int points, List<int[]> coordinates) {
         super(-1, -1);
@@ -34,6 +35,7 @@ public class Treasure extends BuriedObject {
      * @param player the player who is digging.
      * @param row    the row position where the digging occurs.
      * @param col    the column position where the digging occurs.
+     * @author Salma Omar
      */
     @Override
     public void digObject(Player player, int row, int col) {
@@ -49,6 +51,7 @@ public class Treasure extends BuriedObject {
      * @param row the row position to check.
      * @param col the column position to check.
      * @return true if the position is part of the treasure, false otherwise.
+     * @author Roa Jamhour
      */
     private boolean isPartOfTreasure(int row, int col) {
         for (int[] coordinate : coordinates) {
@@ -65,6 +68,7 @@ public class Treasure extends BuriedObject {
      * @param row the row position to check.
      * @param col the column position to check.
      * @return true if the position has been dug, false otherwise.
+     * @author Salma Omar
      */
     @Override
     public boolean isDug(int row, int col) {
@@ -76,6 +80,7 @@ public class Treasure extends BuriedObject {
      * Checks if all parts of this treasure have been dug.
      *
      * @return true if all parts are dug, false otherwise.
+     * @author Salma Omar
      */
     public boolean isCompletelyDug() {
 
@@ -92,6 +97,7 @@ public class Treasure extends BuriedObject {
      * Gets the number of points awarded for digging this treasure.
      *
      * @return the number of points.
+     * @author Roa Jamhour
      */
     public int getPoints() {
         return points;
