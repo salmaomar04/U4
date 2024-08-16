@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Treasure extends BuriedObject {
     private final int points;
-    private final List<int[]> coordinates; // List of all coordinates that make up the treasure
-    private final Set<String> dugCoordinates; // Set of coordinates that have been dug
+    private final List<int[]> coordinates;
+    private final Set<String> dugCoordinates; 
 
     public Treasure(int points, List<int[]> coordinates) {
         super(-1, -1);
