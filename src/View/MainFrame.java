@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
     }
 
     public void updatePlayerLabel() {
-        playerLabel.setText("Current Player: " + controller.getCurrentPlayerName());
+        playerLabel.setText("Current Player: " + controller.getCurrentPlayerName() + " has: " + controller.getCurrentPlayerScore() + " points");
     }
 
     public boolean isGameStarted() {

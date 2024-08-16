@@ -51,7 +51,21 @@ public class Controller {
             return gameManager.getCurrentPlayer().getName();
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Error: " + e.getMessage());
-            return "No player";
+            return "No player ";
+        }
+    }
+
+    /**
+     * Retrieves the score of the current player.
+     *
+     * @return The score of the current player, or "0" if there is an error.
+     */
+    public int getCurrentPlayerScore() {
+        try {
+            return gameManager.getCurrentPlayer().getScore();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+            return 0;
         }
     }
 
