@@ -19,6 +19,8 @@ public class GameBoard {
      * Constructs a GameBoard of the specified size.
      *
      * @param size The size of the game board (number of rows and columns).
+     *
+     * @author Roa Jamhour
      */
     public GameBoard(int size) {
         this.size = size;
@@ -28,6 +30,8 @@ public class GameBoard {
 
     /**
      * Clears the board by setting all squares to null.
+     *
+     * @author Salma Omar
      */
     public void clearBoard() {
         for (int row = 0; row < size; row++) {
@@ -39,6 +43,8 @@ public class GameBoard {
 
     /**
      * Fills all empty squares on the board with EmptySquare objects.
+     *
+     * @author Roa Jamhour
      */
     private void fillEmptySquares() {
         for (int row = 0; row < size; row++) {
@@ -54,6 +60,8 @@ public class GameBoard {
      * Places a treasure at the specified coordinates on the board.
      *
      * @param coordinates A list of coordinates where the treasure will be placed.
+     *
+     * @author Salma Omar
      */
     private void placeTreasure(List<int[]> coordinates) {
         Treasure treasure = new Treasure(100, coordinates);
@@ -67,6 +75,8 @@ public class GameBoard {
     /**
      * Predefined shapes for the treasures on the game board.
      * Each shape is represented as a set of coordinates.
+     *
+     * @author Roa Jamhour
      */
     private static final int[][][] FIXED_TREASURE_SHAPES = {
             {{0, 0}, {0, 1}},
@@ -80,6 +90,8 @@ public class GameBoard {
      * Returns a list of predefined shapes for treasures.
      *
      * @return A list of predefined treasure shapes.
+     *
+     * @author Salma Omar
      */
     private List<int[][]> getFixedTreasureShapes() {
         List<int[][]> shapes = new ArrayList<>();
@@ -91,6 +103,8 @@ public class GameBoard {
 
     /**
      * Initializes the game board by placing treasures, traps, and filling empty squares.
+     *
+     * @author Salma Omar
      */
     private void initializeBoard() {
         Random random = new Random();
@@ -134,6 +148,8 @@ public class GameBoard {
      * @param startRow The starting row for the shape.
      * @param startCol The starting column for the shape.
      * @return A list of global coordinates for the shape.
+     *
+     * @author Salma Omar
      */
     private List<int[]> convertShapeCoordinates(int[][] shape, int startRow, int startCol) {
         List<int[]> shapeCoords = new ArrayList<>();
@@ -150,6 +166,8 @@ public class GameBoard {
      *
      * @param shapeCoords The coordinates of the shape to be placed.
      * @return True if the shape can be placed, otherwise false.
+     *
+     * @author Salma Omar
      */
     private boolean canPlaceShapeWithSpacing(List<int[]> shapeCoords) {
         for (int[] coord : shapeCoords) {
@@ -176,6 +194,8 @@ public class GameBoard {
      * @param row The row to check.
      * @param col The column to check.
      * @return The object at the specified location, or null if there is no object.
+     *
+     * @author Roa Jamhour
      */
     public BuriedObject getObjectAt(int row, int col) {
         if (row >= 0 && row < size && col >= 0 && col < size) {
@@ -186,6 +206,8 @@ public class GameBoard {
 
     /**
      * Resets the game board by reinitializing it.
+     *
+     * @author Roa Jamhour
      */
     public void resetBoard() {
         initializeBoard();
@@ -196,6 +218,8 @@ public class GameBoard {
      *
      * @param row The row to select.
      * @param col The column to select.
+     *
+     * @author Roa Jamhour
      */
     public void selectSquare(int row, int col) {
         selectedRow = row;
@@ -206,6 +230,8 @@ public class GameBoard {
      * Gets the row that is currently selected on the board.
      *
      * @return the selected row, or -1 if no row is selected.
+     *
+     * @author Roa Jamhour
      */
     public int getSelectedRow() {
         return selectedRow;
@@ -215,6 +241,8 @@ public class GameBoard {
      * Gets the column that is currently selected on the board.
      *
      * @return the selected column, or -1 if no column is selected.
+     *
+     * @author Roa Jamhour
      */
     public int getSelectedCol() {
         return selectedCol;
@@ -227,6 +255,8 @@ public class GameBoard {
      * @param player the player who is digging.
      * @param row the row to dig in.
      * @param col the column to dig in.
+     *
+     * @author Salma Omar
      */
     public void digObject(Player player, int row, int col) {
         BuriedObject object = getObjectAt(row, col);
@@ -249,6 +279,7 @@ public class GameBoard {
      * Gets the size of the game board (number of rows or columns).
      *
      * @return the size of the board.
+     * @author Roa Jamhour
      */
     public int getSize() {
         return size;
@@ -258,6 +289,7 @@ public class GameBoard {
      * Checks if all squares on the board have been dug.
      *
      * @return true if all squares are dug; false if any are still buried.
+     * @author Roa Jamhour
      */
     public boolean allSquaresDug() {
         for (int row = 0; row < size; row++) {

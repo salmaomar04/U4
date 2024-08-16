@@ -23,6 +23,8 @@ public class Controller {
     /**
      * Constructor to initialize the game controller. It sets up the game board, player manager,
      * and the main user interface, and starts with the game in a not-started state.
+     *
+     * @author Roa Jamhour
      */
     public Controller() {
         gameBoard = new GameBoard(10);
@@ -36,6 +38,7 @@ public class Controller {
      * Retrieves the game board.
      *
      * @return The GameBoard object representing the game board.
+     * @author Roa Jamhour
      */
     public GameBoard getGameBoard() {
         return gameBoard;
@@ -45,6 +48,7 @@ public class Controller {
      * Retrieves the name of the current player.
      *
      * @return The name of the current player, or "No player" if there is an error.
+     * @author Roa Jamhour
      */
     public String getCurrentPlayerName() {
         try {
@@ -59,6 +63,7 @@ public class Controller {
      * Retrieves the score of the current player.
      *
      * @return The score of the current player, or "0" if there is an error.
+     * @author Roa Jamhour
      */
     public int getCurrentPlayerScore() {
         try {
@@ -71,6 +76,8 @@ public class Controller {
 
     /**
      * Resets the game to its initial state, clearing the board and resetting the UI.
+     *
+     * @author Salma Omar
      */
     public void resetGame() {
         gameBoard.resetBoard();
@@ -82,6 +89,8 @@ public class Controller {
     /**
      * Starts a new game by resetting the board, setting up players, and updating the UI.
      * If the game is already started, it does nothing.
+     *
+     * @author Salma Omar
      */
     public void startGame() {
         if (!gameStarted) {
@@ -98,6 +107,8 @@ public class Controller {
      * Handles the action of digging at a selected square on the game board.
      * It checks if the object is a trap to switch the player's turn, updates the game state,
      * and checks if the game is over.
+     *
+     * @author Salma Omar
      */
     public void handleDig() {
         if (gameStarted) {
@@ -137,6 +148,8 @@ public class Controller {
      * and returning the player with the highest score.
      *
      * @return The Player object representing the winner.
+     *
+     * @author Salma Omar
      */
     private Player determineWinner() {
         List<Player> players = new ArrayList<>((Collection) gameManager.getPlayers());
@@ -149,6 +162,8 @@ public class Controller {
      *
      * @param row The row of the square to select.
      * @param col The column of the square to select.
+     *
+     * @author Roa Jamhour
      */
     public void selectSquare(int row, int col) {
         gameBoard.selectSquare(row, col);
@@ -158,6 +173,8 @@ public class Controller {
      * Retrieves the list of high scores.
      *
      * @return A list of Player objects representing the high scores.
+     *
+     * @author Roa Jamhour
      */
     public List<Player> getHighScores() {
         return gameManager.getHighScores();

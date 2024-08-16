@@ -16,6 +16,8 @@ public class BuriedObject implements IBuriedObject {
      *
      * @param row The row where the object is located.
      * @param col The column where the object is located.
+     *
+     * @author Roa Jamhour
      */
     public BuriedObject(int row, int col) {
         this.row = row;
@@ -29,6 +31,8 @@ public class BuriedObject implements IBuriedObject {
      * @param player The player who is digging the object.
      * @param row The row where the player is digging.
      * @param col The column where the player is digging.
+     *
+     * @author Salma Omar
      */
     @Override
     public void digObject(Player player, int row, int col) {
@@ -43,6 +47,8 @@ public class BuriedObject implements IBuriedObject {
      * @param row The row to check.
      * @param col The column to check.
      * @return True if the object has been dug at the specified position, otherwise false.
+     *
+     * @author Roa Jamhour
      */
     @Override
     public boolean isDug(int row, int col) {

@@ -13,6 +13,8 @@ public class EmptySquare extends BuriedObject {
      *
      * @param row The row where the empty square is located.
      * @param col The column where the empty square is located.
+     *
+     * @author Roa Jamhour
      */
     public EmptySquare(int row, int col) {
         super(row, col);
@@ -24,6 +26,8 @@ public class EmptySquare extends BuriedObject {
      * @param player The player who is digging the square.
      * @param row The row where the player is digging.
      * @param col The column where the player is digging.
+     *
+     * @author Salma Omar
      */
     @Override
     public void digObject(Player player, int row, int col) {
