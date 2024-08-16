@@ -1,22 +1,24 @@
 package Control;
 
-import Entity.BuriedObject;
-import Entity.GameBoard;
-import Entity.GameManager;
+import Entity.*;
 import View.MainFrame;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Controller {
     private final GameBoard gameBoard;
     private final GameManager gameManager;
     private final MainFrame mainFrame;
+    private boolean gameStarted;
 
     public Controller() {
         gameBoard = new GameBoard(10);
         gameManager = new GameManager();
         mainFrame = new MainFrame(this);
-        gameManager.setupPlayers();
+        gameStarted = false;
         mainFrame.updatePlayerLabel();
     }
 
@@ -25,49 +27,77 @@ public class Controller {
     }
 
     public String getCurrentPlayerName() {
-        return gameManager.getCurrentPlayer().getName();
+        try {
+            return gameManager.getCurrentPlayer().getName();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+            return "No player";
+        }
     }
 
     public void resetGame() {
-        gameManager.saveHighScores();
         gameBoard.resetBoard();
-        gameManager.resetScores();
-        gameManager.setupPlayers();
         mainFrame.updatePlayerLabel();
-        mainFrame.getMainPanel().updateGameBoard();
+        mainFrame.getMainPanel().resetBoardUI();
+        gameStarted = false;
     }
 
-    //jag tror jag behöver ha en startgame method
+    public void startGame() {
+        if (!gameStarted) {
+            gameBoard.resetBoard();
+            gameManager.setupPlayers();
+
+            gameStarted = true;
+            mainFrame.updatePlayerLabel();
+        } else {
+            System.out.println("The game has already started.");
+        }
+    }
 
     public void handleDig() {
-        System.out.println("Reached handle dig method");
-        int row = gameBoard.getSelectedRow();
-        int col = gameBoard.getSelectedCol();
-        System.out.println("Selected position: (" + row + ", " + col + ")");
+        if (gameStarted) {
+            int row = gameBoard.getSelectedRow();
+            int col = gameBoard.getSelectedCol();
 
-        BuriedObject object = gameBoard.getObjectAt(row, col);
-        if (object != null) {
-            System.out.println("Object found: " + object.getClass().getSimpleName());
-            if (!object.isDug(row, col)) {
-                System.out.println("Object has not been dug yet");
-                gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
-                gameManager.updateHighScores();
-                gameManager.switchToNextPlayer();
-                mainFrame.updatePlayerLabel();
-                mainFrame.getMainPanel().updateGameBoard(); // Refresh the game board
+            BuriedObject object = gameBoard.getObjectAt(row, col);
+            if (object != null) {
+                if (!object.isDug(row, col)) {
+                    gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
+
+                    if (gameBoard.allSquaresDug()) {
+
+                        Player winner = determineWinner();
+                        JOptionPane.showMessageDialog(mainFrame,
+                                "Game Over! The winner is " + winner.getName() + " with " + winner.getScore() + " points.");
+                        gameManager.updateHighScores();
+                    } else {
+                        gameManager.switchToNextPlayer();
+                        mainFrame.updatePlayerLabel();
+                    }
+
+                    mainFrame.getMainPanel().updateGameBoard();
+                } else {
+                    System.out.println("Object already dug");
+                }
             } else {
-                System.out.println("Object already dug");
+                System.out.println("No object found at position: (" + row + ", " + col + ")");
             }
         } else {
-            System.out.println("No object found at position");
+            System.out.println("Start the game before digging.");
         }
+    }
+
+    private Player determineWinner() {
+        List<Player> players = new ArrayList<>((Collection) gameManager.getPlayers());
+        players.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
+        return players.get(0);
     }
 
     public void selectSquare(int row, int col) {
         gameBoard.selectSquare(row, col);
     }
 
-    public List<String> getHighScores() {
+    public List<Player> getHighScores() {
         return gameManager.getHighScores();
     }
 }

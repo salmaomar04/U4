@@ -4,7 +4,7 @@ public class Player {
     private final String name;
     private int score;
 
-    public Player(String name) {
+    public Player(String name, int score) {
         this.name = name;
         this.score = 0;
     }
@@ -20,12 +20,5 @@ public class Player {
     public void addScore(int points) {
         score += points;
     }
-
-    public void loseScore(int points) {
-        score -= points;
-    }
-
-    public void resetScore() {
-        score = 0;
-    }
 }
+

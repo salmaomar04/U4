@@ -1,20 +1,26 @@
 package View;
 
+import Entity.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class RPanel extends JPanel {
-    private final JList<String> highScoreList;
+    private JTextArea highScoreTextArea;
 
     public RPanel() {
+        highScoreTextArea = new JTextArea();
+        highScoreTextArea.setEditable(false);
         setLayout(new BorderLayout());
-        highScoreList = new JList<>();
-        JScrollPane scrollPane = new JScrollPane(highScoreList);
-        add(scrollPane, BorderLayout.CENTER);
+        add(new JScrollPane(highScoreTextArea), BorderLayout.CENTER);
     }
 
-    public void updateHighScores(List<String> highScores) {
-        highScoreList.setListData(highScores.toArray(new String[0]));
+    public void updateHighScores(List<Player> highScores) {
+        StringBuilder sb = new StringBuilder();
+        for (Player player : highScores) {
+            sb.append(player.getName()).append(": ").append(player.getScore()).append("\n");
+        }
+        highScoreTextArea.setText(sb.toString());
     }
 }

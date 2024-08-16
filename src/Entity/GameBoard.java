@@ -102,10 +102,18 @@ public class GameBoard {
 
     private boolean canPlaceShape(List<int[]> coordinates) {
         for (int[] coord : coordinates) {
-            int r = coord[0];
-            int c = coord[1];
-            if (r < 0 || r >= size || c < 0 || c >= size || board[r][c] != null) {
-                return false;
+            int row = coord[0];
+            int col = coord[1];
+
+            // Check if the current cell or any surrounding cells are occupied
+            for (int r = row - 1; r <= row + 1; r++) {
+                for (int c = col - 1; c <= col + 1; c++) {
+                    if (r >= 0 && r < size && c >= 0 && c < size) {
+                        if (board[r][c] != null) {
+                            return false;
+                        }
+                    }
+                }
             }
         }
         return true;
@@ -163,5 +171,17 @@ public class GameBoard {
 
     public int getSize() {
         return size;
+    }
+
+    public boolean allSquaresDug() {
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                BuriedObject object = board[row][col];
+                if (object != null && !object.isDug(row, col)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

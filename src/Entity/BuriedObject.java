@@ -12,11 +12,6 @@ public class BuriedObject implements IBuriedObject {
     }
 
     @Override
-    public int[] getPosition() {
-        return new int[]{row, col};
-    }
-
-    @Override
     public void digObject(Player player, int row, int col) {
         if (this.row == row && this.col == col && !isDug) {
             isDug = true;

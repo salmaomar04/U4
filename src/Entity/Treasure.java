@@ -21,13 +21,6 @@ public class Treasure extends BuriedObject {
         String dugPosition = row + "," + col;
         if (isPartOfTreasure(row, col) && !isDug(row, col)) {
             dugCoordinates.add(dugPosition);
-
-
-            if (isCompletelyDug()) {
-                //player.addScore(points);
-                //System.out.println(player.getName() + " has found the last square of the treasure and gained " + points + " points!");
-
-            }
         }
     }
 

@@ -9,7 +9,6 @@ public class EmptySquare extends BuriedObject {
     public void digObject(Player player, int row, int col) {
         if (!isDug(row, col)) {
             super.digObject(player, row, col);
-            System.out.println("You have dug an empty square.");
         }
     }
 }
