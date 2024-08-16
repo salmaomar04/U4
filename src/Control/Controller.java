@@ -46,7 +46,6 @@ public class Controller {
         if (!gameStarted) {
             gameBoard.resetBoard();
             gameManager.setupPlayers();
-
             gameStarted = true;
             mainFrame.updatePlayerLabel();
         } else {
@@ -65,7 +64,6 @@ public class Controller {
                     gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
 
                     if (gameBoard.allSquaresDug()) {
-
                         Player winner = determineWinner();
                         JOptionPane.showMessageDialog(mainFrame,
                                 "Game Over! The winner is " + winner.getName() + " with " + winner.getScore() + " points.");
@@ -74,7 +72,6 @@ public class Controller {
                         gameManager.switchToNextPlayer();
                         mainFrame.updatePlayerLabel();
                     }
-
                     mainFrame.getMainPanel().updateGameBoard();
                 } else {
                     System.out.println("Object already dug");

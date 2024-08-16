@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.List;
 
 public class RPanel extends JPanel {
-    private JTextArea highScoreTextArea;
+    private final JTextArea highScoreTextArea;
 
     public RPanel() {
         highScoreTextArea = new JTextArea();

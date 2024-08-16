@@ -1,10 +1,4 @@
-hina: 350
-niji: 0
-gigigiig: 0
-ivobwe: 0
-kjbkb: 0
-salam: 0
-nuhi: 0
-HINA: 0
-nunu: 0
-SALMA: 0
+asia: 300
+AHMAD: 250
+SALMA: 200
+AASIM: 200
