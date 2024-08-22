@@ -105,7 +105,10 @@ public class Controller {
 
     /**
      * Handles the action of digging at a selected square on the game board.
-     * It checks if the object is a trap to switch the player's turn, updates the game state,
+     * It checks if the object is a trap then it invokes on a method from mainframe
+     * that informs the player that he/she has dug a trap and lost points. It also checks if
+     * it's the last part of a treasure shape, then it will invoke on a method from mainframe
+     * that informs the player of it. It switches player's turn, updates the game state,
      * and checks if the game is over.
      *
      * @author Salma Omar
@@ -119,28 +122,53 @@ public class Controller {
             if (object != null) {
                 if (!object.isDug(row, col)) {
                     gameBoard.digObject(gameManager.getCurrentPlayer(), row, col);
-                    if (object instanceof Trap) {
-                        gameManager.switchToNextPlayer();
-                        mainFrame.updatePlayerLabel();
+
+                    if (object instanceof Treasure) {
+                        if (((Treasure) object).isCompletelyDug()) {
+                            mainFrame.showTreasureMessage();
+                        }
+                    } else if (object instanceof Trap) {
+                        mainFrame.showTrapMessage();
                     }
-                    if (gameBoard.allSquaresDug()) {
+
+                    gameManager.switchToNextPlayer();
+                    mainFrame.updatePlayerLabel();
+
+                    if (allTreasuresDug()) {
                         Player winner = determineWinner();
-                        JOptionPane.showMessageDialog(mainFrame,
-                                "Game Over! The winner is " + winner.getName() + " with " + winner.getScore() + " points.");
+                        mainFrame.showGameOverMessage(winner.getName(), winner.getScore());
+                        gameStarted = false;
                         gameManager.updateHighScores();
                     }
-                    mainFrame.updatePlayerLabel();
                     mainFrame.getMainPanel().updateGameBoard();
-
                 } else {
                     System.out.println("Object already dug");
                 }
             } else {
-                System.out.println("No object found at position: (" + row + ", " + col + ")");
+                gameManager.switchToNextPlayer();
+                mainFrame.updatePlayerLabel();
             }
         } else {
-            System.out.println("Start the game before digging.");
+            System.out.println("Start new game before digging!");
         }
+    }
+
+    /**
+     * This method checks if all treasures are dug.
+     * @return boolean, false if there are treasures left or true if all the treasures are dug.
+     *
+     * @author Salma Omar
+     */
+    private boolean allTreasuresDug() {
+        for (int row = 0; row < gameBoard.getSize(); row++) {
+            for (int col = 0; col < gameBoard.getSize(); col++) {
+                BuriedObject object = gameBoard.getObjectAt(row, col);
+                if (object instanceof Treasure && !object.isDug(row, col)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

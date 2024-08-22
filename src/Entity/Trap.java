@@ -36,7 +36,6 @@ public class Trap extends BuriedObject {
         if (!isDug(row, col)) {
             super.digObject(player, row, col);
             player.addScore(-penaltyPoints);
-            System.out.println("You have hit a trap and lost " + penaltyPoints + " points!");
         }
     }
 }

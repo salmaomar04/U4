@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
         mainPanel = new MainPanel(this);
         add(mainPanel, BorderLayout.CENTER);
 
-        playerLabel = new JLabel("Current Player: " + controller.getCurrentPlayerName());
+        playerLabel = new JLabel(controller.getCurrentPlayerName());
         add(playerLabel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
@@ -61,7 +61,7 @@ public class MainFrame extends JFrame {
     }
 
     public void updatePlayerLabel() {
-        playerLabel.setText("Current Player: " + controller.getCurrentPlayerName() + " has: " + controller.getCurrentPlayerScore() + " points");
+        playerLabel.setText(controller.getCurrentPlayerName() + " : " + controller.getCurrentPlayerScore());
     }
 
     public boolean isGameStarted() {
@@ -74,5 +74,18 @@ public class MainFrame extends JFrame {
 
     public MainPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void showGameOverMessage(String playerName, int score) {
+        JOptionPane.showMessageDialog(this,
+                "Game Over! The winner is " + playerName + " with " + score + " points.");
+    }
+
+    public void showTreasureMessage() {
+        JOptionPane.showMessageDialog(this, "Yay! " + controller.getCurrentPlayerName() + " got the treasure and earned 100 points!");
+    }
+
+    public void showTrapMessage() {
+        JOptionPane.showMessageDialog(this, "O noo! " + controller.getCurrentPlayerName() + " has dug a trap and lost 50 points!");
     }
 }

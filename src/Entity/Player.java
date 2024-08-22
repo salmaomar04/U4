@@ -14,13 +14,13 @@ public class Player {
      * Constructs a new Player with the specified name and an initial score of 0.
      *
      * @param name  the name of the player.
-     * @param score the initial score of the player (this parameter is ignored and the score is set to 0).
+     * @param score the initial score of the player.
      *
      * @author Salma Omar
      */
     public Player(String name, int score) {
         this.name = name;
-        this.score = 0;
+        this.score = score;
     }
 
     /**

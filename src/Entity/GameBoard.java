@@ -267,10 +267,7 @@ public class GameBoard {
                 Treasure treasure = (Treasure) object;
                 if (treasure.isCompletelyDug()) {
                     player.addScore(treasure.getPoints());
-                    JOptionPane.showMessageDialog(null, "Wohoo! " + player.getName() + " has dug the last part of a treasure and gained " + treasure.getPoints() + " points!");
                 }
-            } else if (object instanceof Trap) {
-                JOptionPane.showMessageDialog(null, "Oh no! " + player.getName() + ", unfortunately, you have dug a trap.");
             }
         }
     }
@@ -283,23 +280,5 @@ public class GameBoard {
      */
     public int getSize() {
         return size;
-    }
-
-    /**
-     * Checks if all squares on the board have been dug.
-     *
-     * @return true if all squares are dug; false if any are still buried.
-     * @author Roa Jamhour
-     */
-    public boolean allSquaresDug() {
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                BuriedObject object = board[row][col];
-                if (object != null && !object.isDug(row, col)) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
