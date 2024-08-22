@@ -1,2 +1,1 @@
-ASIAAA: 250
-ASIA: 0
+
